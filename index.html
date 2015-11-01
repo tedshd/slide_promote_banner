@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<title>promote banner</title>
+<!-- <link rel="stylesheet" href="http://necolas.github.io/normalize.css/3.0.2/normalize.css"> -->
+<!-- <link rel="stylesheet" href="http://meyerweb.com/eric/tools/css/reset/reset200802.css"> -->
+<!-- <script src="/lib/jquery-1.10.1.js"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-2.1.1.js"></script> -->
+<style>
+    #slide-promote-banner {
+        position: fixed;
+        left: 0;
+        bottom: -16px;
+        width: 100%;
+        -moz-transition: bottom linear .3s;
+        -webkit-transition: bottom linear .3s;
+        transition: bottom linear .3s;
+    }
+    #slide-promote-banner.slide-promote-banner-show {
+        bottom: 0;
+    }
+</style>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="slide-promote-banner">
+        BANNER
+    </div>
+</body>
+<script>
+    (function () {
+        function slidePromoteBanner (option) {
+            position = 100;
+            var initN,
+                tmp,
+                stopTmp,
+                show = false,
+                dom = document.getElementById('slide-promote-banner');
+            if (window.scrollY) {
+                initN = window.scrollY;
+            } else {
+                initN = window.pageYOffset;
+            }
+            tmp = initN;
+            stopTmp = initN;
+            window.onscroll = function (e) {
+                clearTimeout(checkEnd);
+                var n,
+                    currentTop;
+                if (window.scrollY) {
+                    n = window.scrollY;
+                } else {
+                    n = window.pageYOffset;
+                }
+                currentTop = n;
+                if (show && currentTop > tmp) {
+                    show = false;
+                    dom.classList.remove('slide-promote-banner-show');
+                }
+                tmp = n;
+                var checkEnd = setTimeout(function () {
+                    if (!show && stopTmp > n) {
+                        show = true;
+                        dom.classList.add('slide-promote-banner-show');
+                    }
+                    stopTmp = n;
+                }, 300);
+            }
+        }
+        window.slidePromoteBanner = slidePromoteBanner;
+    })();
+    var setting = {};
+    var s = new slidePromoteBanner(setting);
+</script>
+</html>
