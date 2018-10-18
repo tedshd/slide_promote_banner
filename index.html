@@ -9,16 +9,18 @@
 <!-- <script src="/lib/jquery-1.10.1.js"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-2.1.1.js"></script> -->
 <style>
-    #slide-promote-banner {
+    .hide {
+        display: none;
+    }
+    .slide_promote_banner {
         position: fixed;
         left: 0;
-        bottom: -16px;
+        bottom: -1em;
         width: 100%;
-        -moz-transition: bottom linear .3s;
-        -webkit-transition: bottom linear .3s;
-        transition: bottom linear .3s;
+        transition: all linear .3s;
+        line-height: 1;
     }
-    #slide-promote-banner.slide-promote-banner-show {
+    .slide_promote_banner.slide_promote_banner_show {
         bottom: 0;
     }
 </style>
@@ -96,18 +98,25 @@
     <br>
     <br>
     <br>
-    <div id="slide-promote-banner">
+    <div id="slide-promote-banner" class="slide_promote_banner">
         BANNER
     </div>
 </body>
 <script>
     (function () {
-        function slidePromoteBanner () {
-            var initN,
+        function slidePromoteBanner (option) {
+
+            if (!option.select) {
+                return console.error('slidePromoteBanner: not set select');
+            }
+
+            var type = option.type || '',
+                initN,
                 tmp,
                 stopTmp,
                 show = false,
-                dom = document.getElementById('slide-promote-banner');
+                dom = option.select;
+
             if (window.scrollY) {
                 initN = window.scrollY;
             } else {
@@ -115,7 +124,7 @@
             }
             tmp = initN;
             stopTmp = initN;
-            window.onscroll = function (e) {
+            window.addEventListener('scroll', function (argument) {
                 clearTimeout(checkEnd);
                 var n,
                     currentTop;
@@ -127,22 +136,25 @@
                 currentTop = n;
                 if (show && currentTop > tmp) {
                     show = false;
-                    dom.classList.remove('slide-promote-banner-show');
+                    dom.classList.remove('slide_promote_banner_show');
                 }
                 tmp = n;
                 var checkEnd = setTimeout(function () {
                     if (!show && stopTmp > n) {
                         show = true;
-                        dom.classList.add('slide-promote-banner-show');
+                        dom.classList.add('slide_promote_banner_show');
                     }
                     stopTmp = n;
                 }, 300);
-            }
+            });
         }
         window.slidePromoteBanner = slidePromoteBanner;
     })();
 
 
-    var s = new slidePromoteBanner();
+    var s = new slidePromoteBanner({
+        select: document.querySelector('#slide-promote-banner'),
+        type: '',
+    });
 </script>
 </html>
